@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anatole — Галичина</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0a0a0a;
+  --bg2: #111;
+  --bg3: #1a1a1a;
+  --border: rgba(255,255,255,0.08);
+  --border2: rgba(255,255,255,0.16);
+  --text: #f0ede8;
+  --muted: #888880;
+  --accent: #e8d5a3;
+  --accent2: #c4a882;
+  --red: #d4634a;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Manrope', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.022;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* HEADER */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.4rem 3rem;
+  border-bottom: 1px solid var(--border);
+  background: rgba(10,10,10,0.88);
+  backdrop-filter: blur(14px);
+}
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  text-decoration: none;
+}
+.logo span { color: var(--accent); font-style: italic; }
+nav { display: flex; gap: 2.5rem; }
+nav a {
+  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color 0.2s;
+}
+nav a:hover { color: var(--accent); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 3rem 5rem;
+  position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 55% 45% at 72% 38%, rgba(196,168,130,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 35% 55% at 18% 75%, rgba(212,99,74,0.04) 0%, transparent 55%);
+}
+.hero-vline {
+  position: absolute; top: 0; right: 13%;
+  width: 1px; height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--border) 25%, var(--border) 75%, transparent);
+}
+.hero-sidetag {
+  position: absolute; top: 50%; right: calc(13% - 2.8rem);
+  transform: translateY(-50%) rotate(90deg);
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted); white-space: nowrap;
+  animation: fadeIn 1.2s 1s both;
+}
+.hero-label {
+  font-family: 'DM Mono', monospace; font-size: 0.68rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1.4rem;
+  animation: fadeUp 0.8s 0.3s both;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3.8rem, 9vw, 8.5rem);
+  font-weight: 400; line-height: 0.92; letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+  animation: fadeUp 0.9s 0.5s both;
+}
+.hero h1 em { font-style: italic; color: var(--accent); display: block; }
+.hero-desc {
+  max-width: 460px; color: var(--muted); font-size: 0.9rem; line-height: 1.75;
+  animation: fadeUp 0.9s 0.7s both;
+}
+.hero-desc strong { color: var(--text); font-weight: 400; }
+.scroll-hint {
+  position: absolute; bottom: 2.2rem; right: 3rem;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
+  animation: fadeIn 1s 1.3s both;
+}
+.scroll-line {
+  width: 1px; height: 44px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: pulse 2.2s 1.5s infinite;
+}
+@keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes pulse { 0%,100%{opacity:0.25} 50%{opacity:1} }
+
+/* SECTIONS */
+section { padding: 5.5rem 3rem; }
+.divider { height: 1px; background: var(--border); margin: 0 3rem; }
+.sec-label {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent);
+  margin-bottom: 0.8rem;
+}
+.sec-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 400; line-height: 1.1; margin-bottom: 2.8rem;
+}
+
+/* FILTERS */
+.filters {
+  display: flex; gap: 0; margin-bottom: 2.5rem;
+  border: 1px solid var(--border); border-radius: 2px;
+  width: fit-content; overflow: hidden;
+}
+.f-btn {
+  padding: 0.55rem 1.5rem; background: transparent; border: none;
+  color: var(--muted); font-family: 'DM Mono', monospace;
+  font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+  cursor: pointer; transition: all 0.2s;
+}
+.f-btn + .f-btn { border-left: 1px solid var(--border); }
+.f-btn.active { background: var(--accent); color: var(--bg); }
+.f-btn:hover:not(.active) { color: var(--text); background: var(--bg3); }
+
+/* GRID */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.work-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 2px; overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s; cursor: pointer;
+}
+.work-card:hover { border-color: var(--border2); transform: translateY(-4px); }
+
+.card-thumb {
+  aspect-ratio: 3/4; position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.card-thumb svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.tag-type {
+  position: absolute; top: 1rem; left: 1rem;
+  font-family: 'DM Mono', monospace; font-size: 0.58rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 1px;
+}
+.tag-magazine { background: rgba(232,213,163,0.13); color: var(--accent); border: 1px solid rgba(232,213,163,0.2); }
+.tag-comic    { background: rgba(212,99,74,0.13);  color: #e8856e;       border: 1px solid rgba(212,99,74,0.22); }
+.tag-book     { background: rgba(110,180,180,0.12); color: #7dd0d0;       border: 1px solid rgba(110,180,180,0.2); }
+
+.card-overlay {
+  position: absolute; inset: 0;
+  background: rgba(8,8,8,0.88);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 0.7rem;
+  opacity: 0; transition: opacity 0.25s;
+}
+.work-card:hover .card-overlay { opacity: 1; }
+
+.btn {
+  padding: 0.58rem 1.4rem; border-radius: 1px;
+  font-family: 'DM Mono', monospace; font-size: 0.68rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  cursor: pointer; transition: all 0.2s;
+  text-decoration: none; display: inline-block; border: none;
+}
+.btn-gold { background: var(--accent); color: var(--bg); }
+.btn-gold:hover { background: var(--accent2); }
+.btn-outline { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,0.25); }
+.btn-outline:hover { border-color: var(--text); }
+
+.card-body { padding: 1.2rem 1.3rem; }
+.card-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; margin-bottom: 0.35rem; }
+.card-meta { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin-bottom: 0.7rem; }
+.card-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+/* PDF MODAL */
+.modal-bg {
+  position: fixed; inset: 0; background: rgba(4,4,4,0.96);
+  backdrop-filter: blur(10px); z-index: 500;
+  display: none; flex-direction: column;
+}
+.modal-bg.open { display: flex; }
+.modal-head {
+  padding: 1.1rem 2rem; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg); flex-shrink: 0;
+}
+.modal-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; }
+.modal-acts { display: flex; gap: 0.7rem; align-items: center; }
+.modal-dl { padding: 0.5rem 1.2rem; }
+.modal-close {
+  width: 36px; height: 36px; border-radius: 1px;
+  background: none; border: 1px solid var(--border);
+  color: var(--muted); font-size: 1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.modal-close:hover { border-color: var(--text); color: var(--text); }
+.pdf-wrap { flex: 1; background: #1c1c1c; }
+.pdf-wrap iframe { width: 100%; height: 100%; border: none; }
+
+/* COMMENTS */
+.comments-wrap { margin-top: 0; }
+.comment-form {
+  border: 1px solid var(--border); border-radius: 2px;
+  padding: 1.5rem; background: var(--bg2); margin-bottom: 2rem;
+}
+.comment-form h3 {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  font-weight: 400; margin-bottom: 1.1rem; color: var(--text);
+}
+.form-row { display: flex; gap: 0.75rem; margin-bottom: 0.75rem; }
+.form-row input, .comment-form textarea {
+  width: 100%; padding: 0.65rem 0.9rem;
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 1px; color: var(--text);
+  font-family: 'Manrope', sans-serif; font-size: 0.85rem;
+  outline: none; transition: border-color 0.2s; resize: vertical;
+}
+.form-row input:focus, .comment-form textarea:focus { border-color: var(--border2); }
+.comment-form textarea { min-height: 90px; margin-bottom: 0.75rem; }
+::placeholder { color: var(--muted); }
+
+.comments-list { display: flex; flex-direction: column; gap: 1rem; }
+.comment-item {
+  border: 1px solid var(--border); border-radius: 2px;
+  padding: 1rem 1.25rem; background: var(--bg2);
+}
+.comment-header { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; }
+.comment-name { font-weight: 600; font-size: 0.88rem; color: var(--accent); }
+.comment-date { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--muted); }
+.comment-text { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+.no-comments { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 1.5rem 0; }
+
+/* ABOUT */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.about-text p { color: var(--muted); font-size: 0.92rem; line-height: 1.8; margin-bottom: 1.1rem; }
+.about-text p strong { color: var(--text); font-weight: 600; }
+.contact-line {
+  display: flex; align-items: center; gap: 0.75rem; margin-top: 1.8rem;
+  padding: 1rem 1.2rem; border: 1px solid var(--border); border-radius: 2px;
+  background: var(--bg3);
+}
+.contact-line a {
+  font-family: 'DM Mono', monospace; font-size: 0.75rem;
+  letter-spacing: 0.08em; color: var(--accent); text-decoration: none;
+}
+.contact-line a:hover { text-decoration: underline; }
+.contact-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+.about-quote {
+  border-left: 2px solid var(--accent); padding: 1.5rem 1.5rem;
+  background: var(--bg2); border-radius: 0 2px 2px 0;
+}
+.about-quote blockquote {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 1.2rem; line-height: 1.6; color: var(--text);
+  margin-bottom: 1rem;
+}
+.about-quote cite {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
+}
+
+/* FOOTER */
+footer {
+  padding: 2rem 3rem; border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+footer p { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  header { padding: 1.2rem 1.5rem; }
+  .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .divider { margin: 0 1.5rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  nav { gap: 1.5rem; }
+  footer { flex-direction: column; gap: 0.6rem; padding: 1.5rem; text-align: center; }
+  .form-row { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- PDF Modal -->
+<div class="modal-bg" id="modal">
+  <div class="modal-head">
+    <span class="modal-name" id="modal-title"></span>
+    <div class="modal-acts">
+      <a href="#" id="modal-dl" class="btn btn-gold modal-dl" download>↓ PDF</a>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+  </div>
+  <div class="pdf-wrap">
+    <iframe id="pdf-frame" src="" title="Перегляд PDF"></iframe>
+  </div>
+</div>
+
+<!-- Header -->
+<header>
+  <a href="#" class="logo">Anatole <span>·</span> Галичина</a>
+  <nav>
+    <a href="#works">Роботи</a>
+    <a href="#about">Про мене</a>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-vline"></div>
+  <div class="hero-sidetag">Журнали · Комікси · Книги</div>
+  <div class="hero-label">Anatole — Галичина</div>
+  <h1>Мої<em>роботи.</em></h1>
+  <p class="hero-desc">
+    Ілюстровані журнали, комікси та книги — зроблені з <strong>любові до друкованого слова</strong>. Верстка в Adobe InDesign, душа — із Галичини.
+  </p>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Works -->
+<section id="works">
+  <div class="sec-label">— Роботи</div>
+  <h2 class="sec-title">Все що зробив</h2>
+  <div class="filters">
+    <button class="f-btn active" onclick="filter('all',this)">Всі</button>
+    <button class="f-btn" onclick="filter('magazine',this)">Журнали</button>
+    <button class="f-btn" onclick="filter('comic',this)">Комікси</button>
+    <button class="f-btn" onclick="filter('book',this)">Книги</button>
+  </div>
+  <div class="works-grid" id="grid"></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- About -->
+<section id="about">
+  <div class="sec-label">— Про мене</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <h2 class="sec-title" style="margin-bottom:1.3rem;">Anatole<br><em style="font-family:'Playfair Display',serif; font-style:italic; color:var(--accent); font-size:0.7em;">Галичина</em></h2>
+      <p>Я не професійний дизайнер. Я просто людина яка <strong>любить створювати речі</strong> — журнали, комікси, книги. Все починалось з цікавості, а тепер ось — цілий сайт.</p>
+      <p>Верстаю в <strong>Adobe InDesign</strong>. Живу в <strong>Галичині</strong>. Колись навіть різав папір на гільотині в типографії — так що зі світом друку знайомий особисто.</p>
+      <div class="contact-line">
+        <div class="contact-dot"></div>
+        <a href="mailto:anatole983@gmail.com">anatole983@gmail.com</a>
+      </div>
+    </div>
+    <div class="about-quote">
+      <blockquote>
+        "Журнал — це не просто текст і картинки. Це відчуття коли береш його в руки."
+      </blockquote>
+      <cite>— Anatole, Галичина</cite>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Anatole · Галичина</p>
+  <p><a href="mailto:anatole983@gmail.com" style="color:var(--muted); text-decoration:none;">anatole983@gmail.com</a></p>
+</footer>
+
+<script>
+// =============================================
+// ТВОЇ РОБОТИ — редагуй тут
+// pdfUrl: посилання на PDF (Google Drive /preview або Dropbox ?raw=1)
+// Щоб додати нову роботу — скопіюй блок {} і заповни
+// =============================================
+const works = [
+  {
+    id: 1,
+    title: "Назва журналу №1",
+    type: "magazine",
+    year: "2024",
+    pages: "64 стор.",
+    desc: "Тут коротко про цей журнал — тема, ідея, про що він.",
+    pdfUrl: "", // 👈 вставити посилання
+    bg: "#181510", accent: "#c4a882"
+  },
+  {
+    id: 2,
+    title: "Назва коміксу №1",
+    type: "comic",
+    year: "2024",
+    pages: "40 стор.",
+    desc: "Короткий опис сюжету або ідеї коміксу.",
+    pdfUrl: "",
+    bg: "#101518", accent: "#6ea8c4"
+  },
+  {
+    id: 3,
+    title: "Назва книги №1",
+    type: "book",
+    year: "2023",
+    pages: "120 стор.",
+    desc: "Про що ця книга, що надихнуло її зробити.",
+    pdfUrl: "",
+    bg: "#121810", accent: "#7dc47d"
+  }
+];
+
+const typeLabel = { magazine: "Журнал", comic: "Комікс", book: "Книга" };
+const typeClass  = { magazine: "tag-magazine", comic: "tag-comic", book: "tag-book" };
+
+// Коментарі зберігаємо в localStorage
+function getComments(id) {
+  try { return JSON.parse(localStorage.getItem('comments_'+id) || '[]'); } catch { return []; }
+}
+function saveComments(id, arr) {
+  localStorage.setItem('comments_'+id, JSON.stringify(arr));
+}
+
+function renderGrid(f) {
+  const list = f === 'all' ? works : works.filter(w => w.type === f);
+  const g = document.getElementById('grid');
+  g.innerHTML = list.map(w => `
+    <div class="work-card" style="opacity:0;transform:translateY(14px);transition:opacity 0.4s,transform 0.4s;" data-id="${w.id}">
+      <div class="card-thumb" style="background:${w.bg};" onclick="openModal(${w.id})">
+        <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="300" height="400" fill="${w.bg}"/>
+          <line x1="28" y1="0" x2="28" y2="400" stroke="${w.accent}" stroke-width="0.5" opacity="0.25"/>
+          <line x1="272" y1="0" x2="272" y2="400" stroke="${w.accent}" stroke-width="0.5" opacity="0.25"/>
+          <line x1="0" y1="48" x2="300" y2="48" stroke="${w.accent}" stroke-width="0.5" opacity="0.25"/>
+          <line x1="0" y1="352" x2="300" y2="352" stroke="${w.accent}" stroke-width="0.5" opacity="0.25"/>
+          <rect x="28" y="48" width="244" height="304" fill="none" stroke="${w.accent}" stroke-width="0.6" opacity="0.18"/>
+          <text x="150" y="195" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="${w.accent}" opacity="0.45" font-style="italic">${w.title}</text>
+          <text x="150" y="332" text-anchor="middle" font-family="monospace" font-size="8" fill="${w.accent}" opacity="0.3" letter-spacing="3">${w.year}</text>
+        </svg>
+        <span class="tag-type ${typeClass[w.type]}">${typeLabel[w.type]}</span>
+        <div class="card-overlay">
+          <button class="btn btn-gold" onclick="openModal(${w.id})">Переглянути</button>
+          ${w.pdfUrl ? `<a href="${w.pdfUrl}" download class="btn btn-outline">↓ Завантажити</a>` : `<span style="font-size:0.6rem;font-family:monospace;letter-spacing:0.12em;color:rgba(255,255,255,0.3);text-transform:uppercase;">PDF скоро</span>`}
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">${w.title}</div>
+        <div class="card-meta">${typeLabel[w.type]} · ${w.pages} · ${w.year}</div>
+        <div class="card-desc">${w.desc}</div>
+      </div>
+      <div style="padding: 0 1.3rem 1.3rem;">
+        <div class="comments-wrap" id="cw-${w.id}"></div>
+      </div>
+    </div>
+  `).join('');
+
+  setTimeout(() => {
+    g.querySelectorAll('.work-card').forEach((c,i) => {
+      setTimeout(() => { c.style.opacity='1'; c.style.transform='translateY(0)'; }, i*80);
+    });
+    list.forEach(w => renderComments(w.id));
+  }, 10);
+}
+
+function renderComments(id) {
+  const wrap = document.getElementById('cw-'+id);
+  if (!wrap) return;
+  const comments = getComments(id);
+  const count = comments.length;
+  wrap.innerHTML = `
+    <details style="margin-top:0.5rem;">
+      <summary style="cursor:pointer; font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); list-style:none; padding:0.5rem 0; border-top:1px solid var(--border);">
+        💬 Коментарі (${count})
+      </summary>
+      <div style="margin-top:1rem;">
+        <div class="comment-form">
+          <h3>Залишити коментар</h3>
+          <div class="form-row">
+            <input type="text" id="name-${id}" placeholder="Ваше ім'я" maxlength="60">
+            <input type="text" id="city-${id}" placeholder="Місто (необов'язково)" maxlength="60">
+          </div>
+          <textarea id="text-${id}" placeholder="Напишіть що думаєте про цю роботу..."></textarea>
+          <button class="btn btn-gold" onclick="addComment(${id})">Надіслати</button>
+        </div>
+        <div class="comments-list" id="cl-${id}">
+          ${count === 0
+            ? `<p class="no-comments">Поки немає коментарів — будь першим!</p>`
+            : comments.map(c => commentHTML(c)).join('')}
+        </div>
+      </div>
+    </details>
+  `;
+}
+
+function commentHTML(c) {
+  return `
+    <div class="comment-item">
+      <div class="comment-header">
+        <span class="comment-name">${escHtml(c.name)}</span>
+        ${c.city ? `<span class="comment-date">${escHtml(c.city)}</span>` : ''}
+        <span class="comment-date" style="margin-left:auto;">${c.date}</span>
+      </div>
+      <div class="comment-text">${escHtml(c.text)}</div>
+    </div>
+  `;
+}
+
+function addComment(id) {
+  const name = document.getElementById('name-'+id).value.trim();
+  const city = document.getElementById('city-'+id).value.trim();
+  const text = document.getElementById('text-'+id).value.trim();
+  if (!name || !text) { alert('Вкажіть ім\'я та текст коментаря'); return; }
+  const comments = getComments(id);
+  comments.push({
+    name, city, text,
+    date: new Date().toLocaleDateString('uk-UA', {day:'2-digit', month:'2-digit', year:'numeric'})
+  });
+  saveComments(id, comments);
+  renderComments(id);
+  // reopen details
+  const det = document.getElementById('cw-'+id).querySelector('details');
+  if (det) det.open = true;
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function filter(type, btn) {
+  document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid(type);
+}
+
+function openModal(id) {
+  const w = works.find(x => x.id === id);
+  if (!w) return;
+  document.getElementById('modal-title').textContent = w.title;
+  const dl = document.getElementById('modal-dl');
+  if (w.pdfUrl) {
+    document.getElementById('pdf-frame').src = w.pdfUrl;
+    dl.href = w.pdfUrl; dl.style.display = 'inline-block';
+  } else {
+    dl.style.display = 'none';
+    document.getElementById('pdf-frame').srcdoc = `<html><body style="background:#1c1c1c;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;font-family:monospace;color:#555;font-size:13px;letter-spacing:0.1em;"><div style="text-align:center;border:1px solid #2a2a2a;padding:3rem;"><div style="font-size:2.5rem;opacity:0.25;margin-bottom:1rem;">📄</div><div style="text-transform:uppercase;letter-spacing:0.15em;">PDF ще не додано</div><div style="margin-top:0.6rem;font-size:10px;opacity:0.4;">Вкажи посилання у масиві works</div></div></body></html>`;
+  }
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.getElementById('pdf-frame').src = '';
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+renderGrid('all');
+</script>
+</body>
+</html>
