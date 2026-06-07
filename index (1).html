@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anatole — Галичина</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a;
+  --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.16);
+  --text: #f0ede8; --muted: #888880; --accent: #e8d5a3; --accent2: #c4a882;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'Manrope', sans-serif; font-weight: 300; line-height: 1.6; }
+body::before {
+  content: ''; position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.022; pointer-events: none; z-index: 999;
+}
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.4rem 3rem; border-bottom: 1px solid var(--border);
+  background: rgba(10,10,10,0.88); backdrop-filter: blur(14px);
+}
+.logo { font-family: 'Playfair Display', serif; font-size: 1.15rem; letter-spacing: 0.04em; color: var(--text); text-decoration: none; }
+.logo span { color: var(--accent); font-style: italic; }
+nav { display: flex; gap: 2.5rem; }
+nav a { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+nav a:hover { color: var(--accent); }
+
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 3rem 5rem; position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 55% 45% at 72% 38%, rgba(196,168,130,0.07) 0%, transparent 60%),
+              radial-gradient(ellipse 35% 55% at 18% 75%, rgba(212,99,74,0.04) 0%, transparent 55%);
+}
+.hero-vline { position: absolute; top: 0; right: 13%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, var(--border) 25%, var(--border) 75%, transparent); }
+.hero-sidetag { position: absolute; top: 50%; right: calc(13% - 2.8rem); transform: translateY(-50%) rotate(90deg); font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); white-space: nowrap; animation: fadeIn 1.2s 1s both; }
+.hero-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.4rem; animation: fadeUp 0.8s 0.3s both; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3.8rem, 9vw, 8.5rem); font-weight: 400; line-height: 0.92; letter-spacing: -0.02em; margin-bottom: 2rem; animation: fadeUp 0.9s 0.5s both; }
+.hero h1 em { font-style: italic; color: var(--accent); display: block; }
+.hero-desc { max-width: 460px; color: var(--muted); font-size: 0.9rem; line-height: 1.75; animation: fadeUp 0.9s 0.7s both; }
+.hero-desc strong { color: var(--text); font-weight: 400; }
+.hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.8rem; animation: fadeUp 0.9s 0.9s both; }
+.hero-tag { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 12px; border-radius: 1px; }
+.hero-tag-gold { border: 1px solid rgba(232,213,163,0.2); color: var(--accent); }
+.hero-tag-dim { border: 1px solid rgba(255,255,255,0.1); color: var(--muted); }
+.scroll-hint { position: absolute; bottom: 2.2rem; right: 3rem; display: flex; flex-direction: column; align-items: center; gap: 8px; font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); animation: fadeIn 1s 1.3s both; }
+.scroll-line { width: 1px; height: 44px; background: linear-gradient(to bottom, var(--accent), transparent); animation: pulse 2.2s 1.5s infinite; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes pulse { 0%,100%{opacity:0.25} 50%{opacity:1} }
+
+section { padding: 5.5rem 3rem; }
+.divider { height: 1px; background: var(--border); margin: 0 3rem; }
+.sec-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+.sec-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 400; line-height: 1.1; margin-bottom: 2.8rem; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 0; margin-bottom: 2.5rem; border: 1px solid var(--border); border-radius: 2px; width: fit-content; overflow: hidden; }
+.f-btn { padding: 0.55rem 1.3rem; background: transparent; border: none; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+.f-btn + .f-btn { border-left: 1px solid var(--border); }
+.f-btn.active { background: var(--accent); color: var(--bg); }
+.f-btn:hover:not(.active) { color: var(--text); background: var(--bg3); }
+
+.works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
+.work-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
+.work-card:hover { border-color: var(--border2); transform: translateY(-4px); }
+.card-thumb { aspect-ratio: 3/4; position: relative; overflow: hidden; cursor: pointer; }
+.card-thumb svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.tag-type { position: absolute; top: 1rem; left: 1rem; font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 9px; border-radius: 1px; }
+.tag-magazine { background: rgba(232,213,163,0.13); color: var(--accent); border: 1px solid rgba(232,213,163,0.2); }
+.tag-comic { background: rgba(212,99,74,0.13); color: #e8856e; border: 1px solid rgba(212,99,74,0.22); }
+.card-overlay { position: absolute; inset: 0; background: rgba(8,8,8,0.88); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.7rem; opacity: 0; transition: opacity 0.25s; }
+.work-card:hover .card-overlay { opacity: 1; }
+.btn { padding: 0.58rem 1.4rem; border-radius: 1px; font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; border: none; }
+.btn-gold { background: var(--accent); color: var(--bg); }
+.btn-gold:hover { background: var(--accent2); }
+.btn-outline { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,0.25); }
+.btn-outline:hover { border-color: var(--text); }
+.card-body { padding: 1.1rem 1.2rem; }
+.card-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 400; margin-bottom: 0.3rem; }
+.card-meta { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin-bottom: 0.6rem; }
+.card-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+.modal-bg { position: fixed; inset: 0; background: rgba(4,4,4,0.96); backdrop-filter: blur(10px); z-index: 500; display: none; flex-direction: column; }
+.modal-bg.open { display: flex; }
+.modal-head { padding: 1.1rem 2rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--bg); flex-shrink: 0; }
+.modal-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; }
+.modal-acts { display: flex; gap: 0.7rem; align-items: center; }
+.modal-close { width: 36px; height: 36px; border-radius: 1px; background: none; border: 1px solid var(--border); color: var(--muted); font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.modal-close:hover { border-color: var(--text); color: var(--text); }
+.pdf-wrap { flex: 1; background: #1c1c1c; }
+.pdf-wrap iframe { width: 100%; height: 100%; border: none; }
+
+.comment-form { border: 1px solid var(--border); border-radius: 2px; padding: 1.5rem; background: var(--bg2); margin-bottom: 1.5rem; }
+.comment-form h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; margin-bottom: 1.1rem; }
+.form-row { display: flex; gap: 0.75rem; margin-bottom: 0.75rem; }
+.form-row input, .comment-form textarea { width: 100%; padding: 0.65rem 0.9rem; background: var(--bg3); border: 1px solid var(--border); border-radius: 1px; color: var(--text); font-family: 'Manrope', sans-serif; font-size: 0.85rem; outline: none; transition: border-color 0.2s; resize: vertical; }
+.form-row input:focus, .comment-form textarea:focus { border-color: var(--border2); }
+.comment-form textarea { min-height: 90px; margin-bottom: 0.75rem; }
+::placeholder { color: var(--muted); }
+.comments-list { display: flex; flex-direction: column; gap: 1rem; }
+.comment-item { border: 1px solid var(--border); border-radius: 2px; padding: 1rem 1.25rem; background: var(--bg2); }
+.comment-header { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.5rem; }
+.comment-name { font-weight: 600; font-size: 0.88rem; color: var(--accent); }
+.comment-date { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--muted); }
+.comment-text { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+.no-comments { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 1rem 0; }
+
+footer { padding: 2rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+footer p { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
+
+@media (max-width: 768px) {
+  header { padding: 1.2rem 1.5rem; }
+  .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .divider { margin: 0 1.5rem; }
+  nav { gap: 1.5rem; }
+  footer { flex-direction: column; gap: 0.6rem; padding: 1.5rem; text-align: center; }
+  .form-row { flex-direction: column; }
+  .works-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+}
+</style>
+</head>
+<body>
+
+<div class="modal-bg" id="modal">
+  <div class="modal-head">
+    <span class="modal-name" id="modal-title"></span>
+    <div class="modal-acts">
+      <a href="#" id="modal-dl" class="btn btn-gold" download>↓ PDF</a>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+  </div>
+  <div class="pdf-wrap" id="pdf-wrap">
+    <iframe id="pdf-frame" src="" title="Перегляд PDF"></iframe>
+  </div>
+</div>
+
+<header>
+  <a href="#" class="logo">Anatole <span>·</span> Галичина</a>
+  <nav>
+    <a href="#works">Роботи</a>
+    <a href="#contact">Контакт</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-vline"></div>
+  <div class="hero-sidetag">Журнали · Комікси</div>
+  <div class="hero-label">Anatole — Галичина</div>
+  <h1>Мої<em>роботи.</em></h1>
+  <p class="hero-desc">
+    Ілюстровані журнали, комікси та книги — зроблені з <strong>любові до друкованого слова</strong>. Верстка в Adobe InDesign, душа — із Галичини.
+  </p>
+  <div class="hero-tags">
+    <span class="hero-tag hero-tag-gold">Наука і техніка</span>
+    <span class="hero-tag hero-tag-dim">Паранормальне</span>
+    <span class="hero-tag hero-tag-dim">Конспірологія</span>
+    <span class="hero-tag hero-tag-dim">Наукова фантастика</span>
+    <span class="hero-tag hero-tag-dim">Історія</span>
+    <span class="hero-tag hero-tag-dim">Теософія</span>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="works">
+  <div class="sec-label">— Роботи</div>
+  <h2 class="sec-title">Все що зробив</h2>
+  <div class="filters">
+    <button class="f-btn active" onclick="filter('all',this)">Всі</button>
+    <button class="f-btn" onclick="filter('scence',this)">Future Science</button>
+    <button class="f-btn" onclick="filter('paranormal',this)">Paranormal</button>
+    <button class="f-btn" onclick="filter('other',this)">Інші</button>
+    <button class="f-btn" onclick="filter('comic',this)">Комікси</button>
+  </div>
+  <div class="works-grid" id="grid"></div>
+</section>
+
+<div class="divider"></div>
+
+<section id="contact">
+  <div class="sec-label">— Контакт</div>
+  <div style="display:flex; justify-content:space-between; align-items:center; border:1px solid var(--border); padding:3rem; background:var(--bg2); border-radius:2px; flex-wrap:wrap; gap:1.5rem;">
+    <h2 style="font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:400; line-height:1.1;">Маєш питання?<em style="font-style:italic; color:var(--accent); display:block;">Пиши.</em></h2>
+    <a href="mailto:anatole983@gmail.com" class="btn btn-gold" style="font-size:0.8rem; padding:0.9rem 2rem;">anatole983@gmail.com →</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Anatole · Галичина</p>
+  <p><a href="mailto:anatole983@gmail.com" style="color:var(--muted);text-decoration:none;">anatole983@gmail.com</a></p>
+</footer>
+
+<script>
+const works = [
+  // SCENCE FICION
+  { id:1, title:"Future Science № 2", type:"scence", typeLabel:"Журнал", year:"2024", desc:"Другий номер журналу Future Science.", pdfUrl:"https://drive.google.com/file/d/1iVk8Gu8iJJkikiVNFiseTXnWeidU36sm/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1iVk8Gu8iJJkikiVNFiseTXnWeidU36sm", bg:"#141518", accent:"#8a9fc4" },
+  { id:2, title:"Future Science № 3", type:"scence", typeLabel:"Журнал", year:"2024", desc:"Третій номер журналу Future Science.", pdfUrl:"https://drive.google.com/file/d/1v3JGKKHmvm1X5Fp6VromyBMBnMlcRHuZ/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1v3JGKKHmvm1X5Fp6VromyBMBnMlcRHuZ", bg:"#141518", accent:"#7a8fb4" },
+  { id:3, title:"Future Science № 4", type:"scence", typeLabel:"Журнал", year:"2024", desc:"Четвертий номер журналу Future Science.", pdfUrl:"https://drive.google.com/file/d/1b5GJQyC-zqVwOfFj1hO8lu85BLPFpdae/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1b5GJQyC-zqVwOfFj1hO8lu85BLPFpdae", bg:"#181510", accent:"#c4a882" },
+  { id:4, title:"Future Science № 5", type:"scence", typeLabel:"Журнал", year:"2022", desc:"П'ятий номер журналу Future Science. Вересень 2022.", pdfUrl:"https://drive.google.com/file/d/1zDY2B87LNYB654sX_HuDlSxQOvF8vmI1/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1zDY2B87LNYB654sX_HuDlSxQOvF8vmI1", bg:"#181510", accent:"#c44040" },
+  { id:5, title:"Future Science № 8", type:"scence", typeLabel:"Журнал", year:"2024", desc:"Восьмий номер журналу Future Science.", pdfUrl:"https://drive.google.com/file/d/1gqY-5ppIUc12EeSpIu7d-VPgieL3JQwx/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1gqY-5ppIUc12EeSpIu7d-VPgieL3JQwx", bg:"#141518", accent:"#8a9fc4" },
+  // PARANORMAL
+  { id:6, title:"Paranormal № 1", type:"paranormal", typeLabel:"Журнал", year:"2020", desc:"Перший номер журналу про паранормальні явища та містику.", pdfUrl:"https://anatole983-droid.github.io/magazine%20Paranormal%20%E2%84%96%201.pdf", dlUrl:"https://anatole983-droid.github.io/magazine%20Paranormal%20%E2%84%96%201.pdf", bg:"#160f18", accent:"#a87ec4" },
+  { id:7, title:"Paranormal № 2", type:"paranormal", typeLabel:"Журнал", year:"2020", desc:"Другий номер журналу про паранормальні явища та містику.", pdfUrl:"https://anatole983-droid.github.io/magazine%20paranormal%20%E2%84%962.pdf", dlUrl:"https://anatole983-droid.github.io/magazine%20paranormal%20%E2%84%962.pdf", bg:"#160f18", accent:"#b08eca" },
+  { id:8, title:"Paranormal № 3", type:"paranormal", typeLabel:"Журнал", year:"2020", desc:"Третій номер журналу про паранормальні явища та містику.", pdfUrl:"https://drive.google.com/file/d/1Pq8de6W0Y47SNJ_9BIf61ihahnvsz7nz/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1Pq8de6W0Y47SNJ_9BIf61ihahnvsz7nz", bg:"#160f18", accent:"#9870b8" },
+  { id:9, title:"Paranormal № 4", type:"paranormal", typeLabel:"Журнал", year:"2020", desc:"Четвертий номер журналу про паранормальні явища та містику.", pdfUrl:"https://drive.google.com/file/d/1nbfJKOA2eBRVBEVn8Wao5eSGr9bep_Px/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1nbfJKOA2eBRVBEVn8Wao5eSGr9bep_Px", bg:"#160f18", accent:"#a87ec4" },
+  { id:10, title:"Paranormal № 6", type:"paranormal", typeLabel:"Журнал", year:"2022", desc:"Шостий номер журналу про паранормальні явища та містику.", pdfUrl:"https://drive.google.com/file/d/1DA0pbo1sIT_ewPIo6UOZNJErSV4Ns0zh/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1DA0pbo1sIT_ewPIo6UOZNJErSV4Ns0zh", bg:"#160f18", accent:"#b08eca" },
+  { id:11, title:"Paranormal № 10", type:"paranormal", typeLabel:"Журнал", year:"2024", desc:"Десятий номер журналу про паранормальні явища та містику.", pdfUrl:"https://drive.google.com/file/d/1NgtTXlPAwQW7Tn1L4L9ArF8eW4xoQCg_/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1NgtTXlPAwQW7Tn1L4L9ArF8eW4xoQCg_", bg:"#160f18", accent:"#9870b8" },
+  { id:12, title:"Paranormal № 11", type:"paranormal", typeLabel:"Журнал", year:"2024", desc:"Одинадцятий номер журналу про паранормальні явища та містику.", pdfUrl:"https://drive.google.com/file/d/16CSTad-nqxFswAd-4TKPJLPJE9qPyq9q/preview", dlUrl:"https://drive.google.com/uc?export=download&id=16CSTad-nqxFswAd-4TKPJLPJE9qPyq9q", bg:"#160f18", accent:"#a87ec4" },
+  { id:13, title:"Paranormal № 12", type:"paranormal", typeLabel:"Журнал", year:"2023", desc:"Дванадцятий номер журналу про паранормальні явища та містику.", pdfUrl:"https://drive.google.com/file/d/1zsnk1gm7T0C9hOXsw5OTob7rSylX5NyS/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1zsnk1gm7T0C9hOXsw5OTob7rSylX5NyS", bg:"#160f18", accent:"#b08eca" },
+  // ІНШІ
+  { id:14, title:"History", type:"other", typeLabel:"Журнал", year:"2021", desc:"Журнал про історичні події та факти.", pdfUrl:"https://drive.google.com/file/d/1ID3eJcN-zIqfrHlvD2nN2hogVzBE-UL3/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1ID3eJcN-zIqfrHlvD2nN2hogVzBE-UL3", bg:"#181410", accent:"#c4a060" },
+  { id:15, title:"Teosophia Magazine", type:"other", typeLabel:"Журнал", year:"2020", desc:"Журнал про теософію, езотерику та духовні практики.", pdfUrl:"https://drive.google.com/file/d/1BqNlWcK_9K66PazyApFtJZHOj-XzVUmG/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1BqNlWcK_9K66PazyApFtJZHOj-XzVUmG", bg:"#141810", accent:"#90b870" },
+  // КОМІКС
+  { id:16, title:"On the Moon, as on the Moon", type:"comic", typeLabel:"Комікс", year:"2024", desc:"Комікс за однойменним оповіданням Володимира Владка.", pdfUrl:"https://anatole983-droid.github.io/%D0%9D%D0%B0%20%D0%9C%D1%96%D1%81%D1%8F%D1%86%D1%96%20%D1%8F%D0%BA%20%D0%BD%D0%B0%20%D0%9C%D1%96%D1%81%D1%8F%D1%86%D1%96%20.pdf", dlUrl:"https://anatole983-droid.github.io/%D0%9D%D0%B0%20%D0%9C%D1%96%D1%81%D1%8F%D1%86%D1%96%20%D1%8F%D0%BA%20%D0%BD%D0%B0%20%D0%9C%D1%96%D1%81%D1%8F%D1%86%D1%96%20.pdf", bg:"#111418", accent:"#7090b8" }
+];
+
+const typeClass = { scence:"tag-magazine", paranormal:"tag-magazine", other:"tag-magazine", comic:"tag-comic" };
+
+function getComments(id) { try { return JSON.parse(localStorage.getItem('comments_'+id)||'[]'); } catch { return []; } }
+function saveComments(id, arr) { localStorage.setItem('comments_'+id, JSON.stringify(arr)); }
+
+function renderGrid(f) {
+  const list = f==='all' ? works : works.filter(w=>w.type===f);
+  const g = document.getElementById('grid');
+  g.innerHTML = list.map(w=>`
+    <div class="work-card" style="opacity:0;transform:translateY(14px);transition:opacity 0.4s,transform 0.4s;">
+      <div class="card-thumb" onclick="openModal(${w.id})">
+        <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="300" height="400" fill="${w.bg}"/>
+          <line x1="28" y1="0" x2="28" y2="400" stroke="${w.accent}" stroke-width="0.5" opacity="0.25"/>
+          <line x1="272" y1="0" x2="272" y2="400" stroke="${w.accent}" stroke-width="0.5" opacity="0.25"/>
+          <line x1="0" y1="48" x2="300" y2="48" stroke="${w.accent}" stroke-width="0.5" opacity="0.25"/>
+          <line x1="0" y1="352" x2="300" y2="352" stroke="${w.accent}" stroke-width="0.5" opacity="0.25"/>
+          <rect x="28" y="48" width="244" height="304" fill="none" stroke="${w.accent}" stroke-width="0.6" opacity="0.18"/>
+          <text x="150" y="185" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="${w.accent}" opacity="0.45" font-style="italic">${w.title}</text>
+          <text x="150" y="332" text-anchor="middle" font-family="monospace" font-size="8" fill="${w.accent}" opacity="0.3" letter-spacing="3">${w.year}</text>
+        </svg>
+        <span class="tag-type ${typeClass[w.type]}">${w.typeLabel}</span>
+        <div class="card-overlay">
+          <button class="btn btn-gold" onclick="event.stopPropagation();openModal(${w.id})">Переглянути PDF</button>
+          <a href="${w.dlUrl}" class="btn btn-outline" onclick="event.stopPropagation()" target="_blank">↓ Завантажити</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">${w.title}</div>
+        <div class="card-meta">${w.typeLabel} · ${w.year}</div>
+        <div class="card-desc">${w.desc}</div>
+      </div>
+      <div style="padding:0 1.2rem 1.2rem;"><div id="cw-${w.id}"></div></div>
+    </div>`).join('');
+
+  setTimeout(()=>{
+    g.querySelectorAll('.work-card').forEach((c,i)=>{
+      setTimeout(()=>{ c.style.opacity='1'; c.style.transform='translateY(0)'; }, i*60);
+    });
+    list.forEach(w=>renderComments(w.id));
+  }, 10);
+}
+
+function renderComments(id) {
+  const wrap = document.getElementById('cw-'+id);
+  if (!wrap) return;
+  const comments = getComments(id);
+  wrap.innerHTML = `<details>
+    <summary style="cursor:pointer;font-family:'DM Mono',monospace;font-size:0.63rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);list-style:none;padding:0.6rem 0;border-top:1px solid var(--border);">
+      💬 Коментарі (${comments.length})
+    </summary>
+    <div style="margin-top:1rem;">
+      <div class="comment-form">
+        <h3>Залишити коментар</h3>
+        <div class="form-row">
+          <input type="text" id="name-${id}" placeholder="Ваше ім'я" maxlength="60">
+          <input type="text" id="city-${id}" placeholder="Місто (необов'язково)" maxlength="60">
+        </div>
+        <textarea id="text-${id}" placeholder="Що думаєте про цю роботу?"></textarea>
+        <button class="btn btn-gold" onclick="addComment(${id})">Надіслати</button>
+      </div>
+      <div class="comments-list" id="cl-${id}">
+        ${comments.length===0
+          ? '<p class="no-comments">Поки немає коментарів — будь першим!</p>'
+          : comments.map(c=>`<div class="comment-item"><div class="comment-header"><span class="comment-name">${esc(c.name)}</span>${c.city?`<span class="comment-date">${esc(c.city)}</span>`:''}<span class="comment-date" style="margin-left:auto;">${c.date}</span></div><div class="comment-text">${esc(c.text)}</div></div>`).join('')}
+      </div>
+    </div>
+  </details>`;
+}
+
+function addComment(id) {
+  const name = document.getElementById('name-'+id).value.trim();
+  const city = document.getElementById('city-'+id).value.trim();
+  const text = document.getElementById('text-'+id).value.trim();
+  if (!name||!text) { alert("Вкажіть ім'я та текст"); return; }
+  const comments = getComments(id);
+  comments.push({ name, city, text, date: new Date().toLocaleDateString('uk-UA',{day:'2-digit',month:'2-digit',year:'numeric'}) });
+  saveComments(id, comments);
+  renderComments(id);
+  document.getElementById('cw-'+id).querySelector('details').open = true;
+}
+
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function openModal(id) {
+  const w = works.find(x=>x.id===id);
+  document.getElementById('modal-title').textContent = w.title;
+  document.getElementById('modal-dl').href = w.dlUrl;
+  
+  const isGitHub = w.pdfUrl.includes('anatole983-droid.github.io');
+  const frame = document.getElementById('pdf-frame');
+  
+  if (isGitHub) {
+    // Use PDF.js with two-page spread mode
+    const pdfJsUrl = 'https://mozilla.github.io/pdf.js/web/viewer.html?file=' + encodeURIComponent(w.pdfUrl) + '#page=1&spread=odd';
+    frame.src = pdfJsUrl;
+  } else {
+    frame.src = w.pdfUrl;
+  }
+  
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.getElementById('pdf-frame').src = '';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+
+function filter(type, btn) {
+  document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid(type);
+}
+
+renderGrid('all');
+</script>
+</body>
+</html>
