@@ -31,15 +31,8 @@ nav { display: flex; gap: 2.5rem; }
 nav a { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
 nav a:hover { color: var(--accent); }
 
-.hero {
-  min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 0 3rem 5rem; position: relative; overflow: hidden;
-}
-.hero-bg {
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 55% 45% at 72% 38%, rgba(196,168,130,0.07) 0%, transparent 60%),
-              radial-gradient(ellipse 35% 55% at 18% 75%, rgba(212,99,74,0.04) 0%, transparent 55%);
-}
+.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 3rem 5rem; position: relative; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 55% 45% at 72% 38%, rgba(196,168,130,0.07) 0%, transparent 60%), radial-gradient(ellipse 35% 55% at 18% 75%, rgba(212,99,74,0.04) 0%, transparent 55%); }
 .hero-vline { position: absolute; top: 0; right: 13%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, var(--border) 25%, var(--border) 75%, transparent); }
 .hero-sidetag { position: absolute; top: 50%; right: calc(13% - 2.8rem); transform: translateY(-50%) rotate(90deg); font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); white-space: nowrap; animation: fadeIn 1.2s 1s both; }
 .hero-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.4rem; animation: fadeUp 0.8s 0.3s both; }
@@ -68,15 +61,21 @@ section { padding: 5.5rem 3rem; }
 .f-btn.active { background: var(--accent); color: var(--bg); }
 .f-btn:hover:not(.active) { color: var(--text); background: var(--bg3); }
 
-.works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
+.works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
 .work-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
 .work-card:hover { border-color: var(--border2); transform: translateY(-4px); }
 .card-thumb { aspect-ratio: 3/4; position: relative; overflow: hidden; cursor: pointer; }
+.card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+.work-card:hover .card-thumb img { transform: scale(1.03); }
 .card-thumb svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.tag-type { position: absolute; top: 1rem; left: 1rem; font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 9px; border-radius: 1px; }
-.tag-magazine { background: rgba(232,213,163,0.13); color: var(--accent); border: 1px solid rgba(232,213,163,0.2); }
+.tag-type { position: absolute; top: 1rem; left: 1rem; font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 9px; border-radius: 1px; z-index: 2; }
+.tag-fs { background: rgba(30,100,200,0.25); color: #7ab0f0; border: 1px solid rgba(100,160,255,0.3); }
+.tag-sf { background: rgba(200,30,30,0.2); color: #f07a7a; border: 1px solid rgba(255,100,100,0.3); }
+.tag-pa { background: rgba(100,0,150,0.25); color: #c07ae0; border: 1px solid rgba(180,80,220,0.3); }
+.tag-other { background: rgba(232,213,163,0.13); color: var(--accent); border: 1px solid rgba(232,213,163,0.2); }
 .tag-comic { background: rgba(212,99,74,0.13); color: #e8856e; border: 1px solid rgba(212,99,74,0.22); }
-.card-overlay { position: absolute; inset: 0; background: rgba(8,8,8,0.88); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.7rem; opacity: 0; transition: opacity 0.25s; }
+.tag-vatnik { background: rgba(180,0,0,0.2); color: #e06060; border: 1px solid rgba(200,50,50,0.3); }
+.card-overlay { position: absolute; inset: 0; background: rgba(8,8,8,0.88); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.7rem; opacity: 0; transition: opacity 0.25s; z-index: 3; }
 .work-card:hover .card-overlay { opacity: 1; }
 .btn { padding: 0.58rem 1.4rem; border-radius: 1px; font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; border: none; }
 .btn-gold { background: var(--accent); color: var(--bg); }
@@ -123,7 +122,7 @@ footer p { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing
   nav { gap: 1.5rem; }
   footer { flex-direction: column; gap: 0.6rem; padding: 1.5rem; text-align: center; }
   .form-row { flex-direction: column; }
-  .works-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+  .works-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
 }
 </style>
 </head>
@@ -156,9 +155,7 @@ footer p { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing
   <div class="hero-sidetag">Журнали · Комікси</div>
   <div class="hero-label">Anatole — Галичина</div>
   <h1>Мої<em>роботи.</em></h1>
-  <p class="hero-desc">
-    Ілюстровані журнали, комікси та книги — зроблені з <strong>любові до друкованого слова</strong>. Верстка в Adobe InDesign, душа — із Галичини.
-  </p>
+  <p class="hero-desc">Ілюстровані журнали, комікси та книги — зроблені з <strong>любові до друкованого слова</strong>. Верстка в Adobe InDesign, душа — із Галичини.</p>
   <div class="hero-tags">
     <span class="hero-tag hero-tag-gold">Наука і техніка</span>
     <span class="hero-tag hero-tag-dim">Паранормальне</span>
@@ -167,10 +164,7 @@ footer p { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing
     <span class="hero-tag hero-tag-dim">Історія</span>
     <span class="hero-tag hero-tag-dim">Теософія</span>
   </div>
-  <div class="scroll-hint">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
-  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div><span>Scroll</span></div>
 </section>
 
 <div class="divider"></div>
@@ -180,8 +174,10 @@ footer p { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing
   <h2 class="sec-title">Все що зробив</h2>
   <div class="filters">
     <button class="f-btn active" onclick="filter('all',this)">Всі</button>
-    <button class="f-btn" onclick="filter('scence',this)">Future Science</button>
-    <button class="f-btn" onclick="filter('paranormal',this)">Paranormal</button>
+    <button class="f-btn" onclick="filter('fs',this)">Future Science</button>
+    <button class="f-btn" onclick="filter('sf',this)">Science Fiction</button>
+    <button class="f-btn" onclick="filter('pa',this)">Paranormal Activity</button>
+    <button class="f-btn" onclick="filter('vatnik',this)">Ватнік</button>
     <button class="f-btn" onclick="filter('other',this)">Інші</button>
     <button class="f-btn" onclick="filter('comic',this)">Комікси</button>
   </div>
@@ -192,9 +188,9 @@ footer p { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing
 
 <section id="contact">
   <div class="sec-label">— Контакт</div>
-  <div style="display:flex; justify-content:space-between; align-items:center; border:1px solid var(--border); padding:3rem; background:var(--bg2); border-radius:2px; flex-wrap:wrap; gap:1.5rem;">
-    <h2 style="font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:400; line-height:1.1;">Маєш питання?<em style="font-style:italic; color:var(--accent); display:block;">Пиши.</em></h2>
-    <a href="mailto:anatole983@gmail.com" class="btn btn-gold" style="font-size:0.8rem; padding:0.9rem 2rem;">anatole983@gmail.com →</a>
+  <div style="display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border);padding:3rem;background:var(--bg2);border-radius:2px;flex-wrap:wrap;gap:1.5rem;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:400;line-height:1.1;">Маєш питання?<em style="font-style:italic;color:var(--accent);display:block;">Пиши.</em></h2>
+    <a href="mailto:anatole983@gmail.com" class="btn btn-gold" style="font-size:0.8rem;padding:0.9rem 2rem;">anatole983@gmail.com →</a>
   </div>
 </section>
 
@@ -204,33 +200,61 @@ footer p { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing
 </footer>
 
 <script>
+const BASE = 'https://anatole983-droid.github.io/';
+const DRIVE = 'https://drive.google.com/file/d/';
+
+function gh(file) { return BASE + encodeURIComponent(file); }
+function drive(id) { return DRIVE + id + '/preview'; }
+function driveDl(id) { return 'https://drive.google.com/uc?export=download&id=' + id; }
+
 const works = [
-  // SCENCE FICION
-  { id:1, title:"Future Science № 2", type:"scence", typeLabel:"Журнал", year:"2024", desc:"Другий номер журналу Future Science.", pdfUrl:"https://drive.google.com/file/d/1iVk8Gu8iJJkikiVNFiseTXnWeidU36sm/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1iVk8Gu8iJJkikiVNFiseTXnWeidU36sm", bg:"#141518", accent:"#8a9fc4" },
-  { id:2, title:"Future Science № 3", type:"scence", typeLabel:"Журнал", year:"2024", desc:"Третій номер журналу Future Science.", pdfUrl:"https://drive.google.com/file/d/1v3JGKKHmvm1X5Fp6VromyBMBnMlcRHuZ/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1v3JGKKHmvm1X5Fp6VromyBMBnMlcRHuZ", bg:"#141518", accent:"#7a8fb4" },
-  { id:3, title:"Future Science № 4", type:"scence", typeLabel:"Журнал", year:"2024", desc:"Четвертий номер журналу Future Science.", pdfUrl:"https://drive.google.com/file/d/1b5GJQyC-zqVwOfFj1hO8lu85BLPFpdae/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1b5GJQyC-zqVwOfFj1hO8lu85BLPFpdae", bg:"#181510", accent:"#c4a882" },
-  { id:4, title:"Future Science № 5", type:"scence", typeLabel:"Журнал", year:"2022", desc:"П'ятий номер журналу Future Science. Вересень 2022.", pdfUrl:"https://drive.google.com/file/d/1zDY2B87LNYB654sX_HuDlSxQOvF8vmI1/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1zDY2B87LNYB654sX_HuDlSxQOvF8vmI1", bg:"#181510", accent:"#c44040" },
-  { id:5, title:"Future Science № 8", type:"scence", typeLabel:"Журнал", year:"2024", desc:"Восьмий номер журналу Future Science.", pdfUrl:"https://drive.google.com/file/d/1gqY-5ppIUc12EeSpIu7d-VPgieL3JQwx/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1gqY-5ppIUc12EeSpIu7d-VPgieL3JQwx", bg:"#141518", accent:"#8a9fc4" },
-  // PARANORMAL
-  { id:6, title:"Paranormal № 1", type:"paranormal", typeLabel:"Журнал", year:"2020", desc:"Перший номер журналу про паранормальні явища та містику.", pdfUrl:"https://drive.google.com/file/d/1ztJ-qOvfcysAUny0MEiKqdbec3Le6oIB/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1ztJ-qOvfcysAUny0MEiKqdbec3Le6oIB", bg:"#160f18", accent:"#a87ec4" },
-  { id:7, title:"Paranormal № 2", type:"paranormal", typeLabel:"Журнал", year:"2020", desc:"Другий номер журналу про паранормальні явища та містику.", pdfUrl:"https://drive.google.com/file/d/1FmFOu6Vru3Tb8bEjuIuD4aorSDbU-1zf/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1FmFOu6Vru3Tb8bEjuIuD4aorSDbU-1zf", bg:"#160f18", accent:"#b08eca" },
-  { id:8, title:"Paranormal № 3", type:"paranormal", typeLabel:"Журнал", year:"2020", desc:"Третій номер журналу про паранормальні явища та містику.", pdfUrl:"https://drive.google.com/file/d/1Pq8de6W0Y47SNJ_9BIf61ihahnvsz7nz/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1Pq8de6W0Y47SNJ_9BIf61ihahnvsz7nz", bg:"#160f18", accent:"#9870b8" },
-  { id:9, title:"Paranormal № 4", type:"paranormal", typeLabel:"Журнал", year:"2020", desc:"Четвертий номер журналу про паранормальні явища та містику.", pdfUrl:"https://drive.google.com/file/d/1nbfJKOA2eBRVBEVn8Wao5eSGr9bep_Px/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1nbfJKOA2eBRVBEVn8Wao5eSGr9bep_Px", bg:"#160f18", accent:"#a87ec4" },
-  { id:10, title:"Paranormal № 6", type:"paranormal", typeLabel:"Журнал", year:"2022", desc:"Шостий номер журналу про паранормальні явища та містику.", pdfUrl:"https://drive.google.com/file/d/1DA0pbo1sIT_ewPIo6UOZNJErSV4Ns0zh/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1DA0pbo1sIT_ewPIo6UOZNJErSV4Ns0zh", bg:"#160f18", accent:"#b08eca" },
-  { id:11, title:"Paranormal № 10", type:"paranormal", typeLabel:"Журнал", year:"2024", desc:"Десятий номер журналу про паранормальні явища та містику.", pdfUrl:"https://drive.google.com/file/d/1NgtTXlPAwQW7Tn1L4L9ArF8eW4xoQCg_/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1NgtTXlPAwQW7Tn1L4L9ArF8eW4xoQCg_", bg:"#160f18", accent:"#9870b8" },
-  { id:12, title:"Paranormal № 11", type:"paranormal", typeLabel:"Журнал", year:"2024", desc:"Одинадцятий номер журналу про паранормальні явища та містику.", pdfUrl:"https://drive.google.com/file/d/16CSTad-nqxFswAd-4TKPJLPJE9qPyq9q/preview", dlUrl:"https://drive.google.com/uc?export=download&id=16CSTad-nqxFswAd-4TKPJLPJE9qPyq9q", bg:"#160f18", accent:"#a87ec4" },
-  { id:13, title:"Paranormal № 12", type:"paranormal", typeLabel:"Журнал", year:"2023", desc:"Дванадцятий номер журналу про паранормальні явища та містику.", pdfUrl:"https://drive.google.com/file/d/1zsnk1gm7T0C9hOXsw5OTob7rSylX5NyS/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1zsnk1gm7T0C9hOXsw5OTob7rSylX5NyS", bg:"#160f18", accent:"#b08eca" },
+  // FUTURE SCIENCE
+  { id:1,  title:'Future Science № 2', type:'fs', label:'Future Science', year:'2022', desc:'Другий номер журналу Future Science. 2027 рік: Готель на орбіті.', cover:'futur scince 2 .jpg', pdfUrl:drive('1iVk8Gu8iJJkikiVNFiseTXnWeidU36sm'), dlUrl:driveDl('1iVk8Gu8iJJkikiVNFiseTXnWeidU36sm') },
+  { id:2,  title:'Future Science № 3', type:'fs', label:'Future Science', year:'2022', desc:'Третій номер журналу Future Science.', cover:'science fiction 3 .jpg', pdfUrl:drive('1v3JGKKHmvm1X5Fp6VromyBMBnMlcRHuZ'), dlUrl:driveDl('1v3JGKKHmvm1X5Fp6VromyBMBnMlcRHuZ') },
+  { id:3,  title:'Future Science № 4', type:'fs', label:'Future Science', year:'2022', desc:'Четвертий номер журналу Future Science. Вересень 2022.', cover:'future scence 5 2022  .jpg', pdfUrl:drive('1zDY2B87LNYB654sX_HuDlSxQOvF8vmI1'), dlUrl:driveDl('1zDY2B87LNYB654sX_HuDlSxQOvF8vmI1') },
+  { id:4,  title:'Future Science № 8', type:'fs', label:'Future Science', year:'2024', desc:'Восьмий номер журналу Future Science.', cover:'', pdfUrl:drive('1gqY-5ppIUc12EeSpIu7d-VPgieL3JQwx'), dlUrl:driveDl('1gqY-5ppIUc12EeSpIu7d-VPgieL3JQwx') },
+  // SCIENCE FICTION
+  { id:5,  title:'Science Fiction № 5', type:'sf', label:'Science Fiction', year:'2024', desc:'П\'ятий номер Science Fiction. Кіберпанк, технології війни, майбутнє.', cover:'science fiction 5 2024 .png', pdfUrl:drive('1b5GJQyC-zqVwOfFj1hO8lu85BLPFpdae'), dlUrl:driveDl('1b5GJQyC-zqVwOfFj1hO8lu85BLPFpdae') },
+  { id:6,  title:'Science Fiction № 8', type:'sf', label:'Science Fiction', year:'2026', desc:'Восьмий номер Science Fiction. Березень 2026.', cover:'science fiction 8 .png', pdfUrl:drive('1b5GJQyC-zqVwOfFj1hO8lu85BLPFpdae'), dlUrl:driveDl('1b5GJQyC-zqVwOfFj1hO8lu85BLPFpdae') },
+  // PARANORMAL ACTIVITY
+  { id:7,  title:'Paranormal Activity № 1', type:'pa', label:'Paranormal Activity', year:'2020', desc:'Перший номер. Зомбо апокаліпсис в Росії. Паранормальні явища та містика.', cover:'паранормальні явища 1 .jpg', pdfUrl:gh('magazine Paranormal № 1.pdf'), dlUrl:gh('magazine Paranormal № 1.pdf') },
+  { id:8,  title:'Paranormal Activity № 2', type:'pa', label:'Paranormal Activity', year:'2020', desc:'Другий номер. Біороботи серед людей. Цифрове рабство.', cover:'паранормальні явища 2 .jpg', pdfUrl:gh('magazine paranormal №2.pdf'), dlUrl:gh('magazine paranormal №2.pdf') },
+  { id:9,  title:'Paranormal Activity № 3', type:'pa', label:'Paranormal Activity', year:'2020', desc:'Третій номер. Paranormal Activity — 10 загальновідомих фейків.', cover:'paranormal 4 .jpg', pdfUrl:drive('1Pq8de6W0Y47SNJ_9BIf61ihahnvsz7nz'), dlUrl:driveDl('1Pq8de6W0Y47SNJ_9BIf61ihahnvsz7nz') },
+  { id:10, title:'Paranormal Activity № 4', type:'pa', label:'Paranormal Activity', year:'2020', desc:'Четвертий номер. Паранормальні явища та містика.', cover:'паранормальні явища 4 .jpg', pdfUrl:drive('1nbfJKOA2eBRVBEVn8Wao5eSGr9bep_Px'), dlUrl:driveDl('1nbfJKOA2eBRVBEVn8Wao5eSGr9bep_Px') },
+  { id:11, title:'Paranormal Activity № 6', type:'pa', label:'Paranormal Activity', year:'2022', desc:'Шостий номер. Чи можна пройти крізь стіну?', cover:'paranormal activity 6 .jpg', pdfUrl:drive('1DA0pbo1sIT_ewPIo6UOZNJErSV4Ns0zh'), dlUrl:driveDl('1DA0pbo1sIT_ewPIo6UOZNJErSV4Ns0zh') },
+  { id:12, title:'Paranormal Activity № 10', type:'pa', label:'Paranormal Activity', year:'2022', desc:'Десятий номер. Джон Ділінджер. Підземні операції Земного Альянсу.', cover:'paranormal 10 .jpg', pdfUrl:gh('magazine Paranormal № 1.pdf'), dlUrl:gh('magazine Paranormal № 1.pdf') },
+  { id:13, title:'Paranormal Activity № 11', type:'pa', label:'Paranormal Activity', year:'2023', desc:'Одинадцятий номер. ТОП-10 наймогутніших організацій світу.', cover:'paranormal 11 .jpg', pdfUrl:drive('16CSTad-nqxFswAd-4TKPJLPJE9qPyq9q'), dlUrl:driveDl('16CSTad-nqxFswAd-4TKPJLPJE9qPyq9q') },
+  { id:14, title:'Paranormal Activity № 12', type:'pa', label:'Paranormal Activity', year:'2023', desc:'Дванадцятий номер. Верховна зрада. Паранормальна активність.', cover:'paranormal activity 12 .jpg', pdfUrl:drive('1zsnk1gm7T0C9hOXsw5OTob7rSylX5NyS'), dlUrl:driveDl('1zsnk1gm7T0C9hOXsw5OTob7rSylX5NyS') },
   // ІНШІ
-  { id:14, title:"History", type:"other", typeLabel:"Журнал", year:"2021", desc:"Журнал про історичні події та факти.", pdfUrl:"https://drive.google.com/file/d/1ID3eJcN-zIqfrHlvD2nN2hogVzBE-UL3/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1ID3eJcN-zIqfrHlvD2nN2hogVzBE-UL3", bg:"#181410", accent:"#c4a060" },
-  { id:15, title:"Teosophia Magazine", type:"other", typeLabel:"Журнал", year:"2020", desc:"Журнал про теософію, езотерику та духовні практики.", pdfUrl:"https://drive.google.com/file/d/1BqNlWcK_9K66PazyApFtJZHOj-XzVUmG/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1BqNlWcK_9K66PazyApFtJZHOj-XzVUmG", bg:"#141810", accent:"#90b870" },
+  { id:15, title:'History', type:'other', label:'Журнал', year:'2021', desc:'Журнал про історичні події та факти. «Історія — це брехня, з якої всі згодні.»', cover:'history .jpg', pdfUrl:drive('1ID3eJcN-zIqfrHlvD2nN2hogVzBE-UL3'), dlUrl:driveDl('1ID3eJcN-zIqfrHlvD2nN2hogVzBE-UL3') },
+  { id:16, title:'Teosophia Magazine', type:'other', label:'Журнал', year:'2020', desc:'Журнал про теософію, езотерику та духовні практики.', cover:'teosophia .jpg', pdfUrl:gh('teosophia magazine.pdf'), dlUrl:gh('teosophia magazine.pdf') },
+  // ВАТНІК
+  { id:17, title:'Ватнік № 1', type:'vatnik', label:'Сатира', year:'2019', desc:'Сатиричний журнал про ватніків. Перший випуск. Газета видається з 25 січня 2019 року.', cover:'ВАТНІК 1 .jpeg', pdfUrl:gh('VATA Magazine.pdf'), dlUrl:gh('VATA Magazine.pdf') },
+  { id:18, title:'Ватнік № 2', type:'vatnik', label:'Сатира', year:'2019', desc:'Сатиричний журнал про ватніків. Другий випуск.', cover:'ВАТНІК 2 .jpeg', pdfUrl:gh('vata 2 .pdf'), dlUrl:gh('vata 2 .pdf') },
   // КОМІКС
-  { id:16, title:"On the Moon, as on the Moon", type:"comic", typeLabel:"Комікс", year:"2024", desc:"Комікс за однойменним оповіданням Володимира Владка.", pdfUrl:"https://drive.google.com/file/d/1ZEGKgIjam5cNV3u9oQtO4jn9AwR69AL5/preview", dlUrl:"https://drive.google.com/uc?export=download&id=1ZEGKgIjam5cNV3u9oQtO4jn9AwR69AL5", bg:"#111418", accent:"#7090b8" }
+  { id:19, title:'On the Moon, as on the Moon', type:'comic', label:'Комікс', year:'2024', desc:'Комікс за однойменним оповіданням Володимира Владка.', cover:'на місяці як на місяці .jpeg', pdfUrl:gh('На Місяці як на Місяці .pdf'), dlUrl:gh('На Місяці як на Місяці .pdf') }
 ];
 
-const typeClass = { scence:"tag-magazine", paranormal:"tag-magazine", other:"tag-magazine", comic:"tag-comic" };
+const tagClass = { fs:'tag-fs', sf:'tag-sf', pa:'tag-pa', other:'tag-other', comic:'tag-comic', vatnik:'tag-vatnik' };
+const fallbackColors = { fs:'#141528', sf:'#180a0a', pa:'#160f18', other:'#181410', comic:'#111418', vatnik:'#180808' };
+const fallbackAccents = { fs:'#7a9fd4', sf:'#d47a7a', pa:'#a87ec4', other:'#c4a060', comic:'#7090b8', vatnik:'#d46060' };
 
-function getComments(id) { try { return JSON.parse(localStorage.getItem('comments_'+id)||'[]'); } catch { return []; } }
-function saveComments(id, arr) { localStorage.setItem('comments_'+id, JSON.stringify(arr)); }
+function getComments(id) { try { return JSON.parse(localStorage.getItem('c'+id)||'[]'); } catch { return []; } }
+function saveComments(id, arr) { localStorage.setItem('c'+id, JSON.stringify(arr)); }
+
+function cardThumb(w) {
+  if (w.cover) {
+    return `<img src="${BASE + encodeURIComponent(w.cover)}" alt="${w.title}" onerror="this.parentNode.innerHTML=fallbackSvg(${w.id})">`;
+  }
+  return fallbackSvg(w.id);
+}
+
+function fallbackSvg(id) {
+  const w = works.find(x=>x.id===id);
+  const bg = fallbackColors[w.type]||'#111';
+  const ac = fallbackAccents[w.type]||'#888';
+  return `<svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><rect width="300" height="400" fill="${bg}"/><line x1="28" y1="0" x2="28" y2="400" stroke="${ac}" stroke-width="0.5" opacity="0.25"/><line x1="272" y1="0" x2="272" y2="400" stroke="${ac}" stroke-width="0.5" opacity="0.25"/><rect x="28" y="48" width="244" height="304" fill="none" stroke="${ac}" stroke-width="0.6" opacity="0.18"/><text x="150" y="200" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="${ac}" opacity="0.45" font-style="italic">${w.title}</text><text x="150" y="340" text-anchor="middle" font-family="monospace" font-size="8" fill="${ac}" opacity="0.3" letter-spacing="3">${w.year}</text></svg>`;
+}
 
 function renderGrid(f) {
   const list = f==='all' ? works : works.filter(w=>w.type===f);
@@ -238,17 +262,8 @@ function renderGrid(f) {
   g.innerHTML = list.map(w=>`
     <div class="work-card" style="opacity:0;transform:translateY(14px);transition:opacity 0.4s,transform 0.4s;">
       <div class="card-thumb" onclick="openModal(${w.id})">
-        <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="300" height="400" fill="${w.bg}"/>
-          <line x1="28" y1="0" x2="28" y2="400" stroke="${w.accent}" stroke-width="0.5" opacity="0.25"/>
-          <line x1="272" y1="0" x2="272" y2="400" stroke="${w.accent}" stroke-width="0.5" opacity="0.25"/>
-          <line x1="0" y1="48" x2="300" y2="48" stroke="${w.accent}" stroke-width="0.5" opacity="0.25"/>
-          <line x1="0" y1="352" x2="300" y2="352" stroke="${w.accent}" stroke-width="0.5" opacity="0.25"/>
-          <rect x="28" y="48" width="244" height="304" fill="none" stroke="${w.accent}" stroke-width="0.6" opacity="0.18"/>
-          <text x="150" y="185" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="${w.accent}" opacity="0.45" font-style="italic">${w.title}</text>
-          <text x="150" y="332" text-anchor="middle" font-family="monospace" font-size="8" fill="${w.accent}" opacity="0.3" letter-spacing="3">${w.year}</text>
-        </svg>
-        <span class="tag-type ${typeClass[w.type]}">${w.typeLabel}</span>
+        ${cardThumb(w)}
+        <span class="tag-type ${tagClass[w.type]}">${w.label}</span>
         <div class="card-overlay">
           <button class="btn btn-gold" onclick="event.stopPropagation();openModal(${w.id})">Переглянути PDF</button>
           <a href="${w.dlUrl}" class="btn btn-outline" onclick="event.stopPropagation()" target="_blank">↓ Завантажити</a>
@@ -256,7 +271,7 @@ function renderGrid(f) {
       </div>
       <div class="card-body">
         <div class="card-title">${w.title}</div>
-        <div class="card-meta">${w.typeLabel} · ${w.year}</div>
+        <div class="card-meta">${w.label} · ${w.year}</div>
         <div class="card-desc">${w.desc}</div>
       </div>
       <div style="padding:0 1.2rem 1.2rem;"><div id="cw-${w.id}"></div></div>
@@ -264,7 +279,7 @@ function renderGrid(f) {
 
   setTimeout(()=>{
     g.querySelectorAll('.work-card').forEach((c,i)=>{
-      setTimeout(()=>{ c.style.opacity='1'; c.style.transform='translateY(0)'; }, i*60);
+      setTimeout(()=>{ c.style.opacity='1'; c.style.transform='translateY(0)'; }, i*50);
     });
     list.forEach(w=>renderComments(w.id));
   }, 10);
@@ -314,7 +329,10 @@ function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>
 function openModal(id) {
   const w = works.find(x=>x.id===id);
   document.getElementById('modal-title').textContent = w.title;
-  document.getElementById('pdf-frame').src = w.pdfUrl;
+  const isGH = w.pdfUrl.includes('anatole983-droid.github.io');
+  document.getElementById('pdf-frame').src = isGH
+    ? 'https://mozilla.github.io/pdf.js/web/viewer.html?file=' + encodeURIComponent(w.pdfUrl) + '#spread=odd'
+    : w.pdfUrl;
   document.getElementById('modal-dl').href = w.dlUrl;
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -325,13 +343,11 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
-
 function filter(type, btn) {
   document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   renderGrid(type);
 }
-
 renderGrid('all');
 </script>
 </body>
